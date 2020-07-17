@@ -12,37 +12,11 @@
 #######################################################
 
 import os, re, sys, json
-from bs4 import BeautifulSoup as parser
-from datetime import datetime
-
-def main(self, cookie, url, config):
-	ask = raw_input('\nQuery name: ')
-	if ask.strip() == '':
-		exit("\n\033[0;91mRequired, can't empty.\033[0m")
-	try:
-		max = int(raw_input('How many? (ex: 100): '))
-	except ValueError:
-		exit("\n\033[0;91mStuppid.\033[0m")
-	if max == 0:
-		exit("\n\033[0;91mRequired, can't empty.\033[0m")
-
-	url_search = url+'/search/people/?q='+ask
-
-	statusStop = False
-	output = 'dump/'+ask.replace(' ', '_')+'.json'.strip()
-	id = []
-	print('')
-
-	while True:
-		try:
-			response = config.httpRequest(url_search, cookie).encode('utf-8')
-			html = parser(response, 'html.parser')
-			find = html.find_all('a')
-			for i in find:
-				name = i.find('div')
+dari  bs4  impor  BeautifulSoup  sebagai  parser
+e  =  i . find ( 'div' )
 				if '+' in str(name) or name == None:
 					continue
-				else:
+				lain 
 					full_name = str(name.text.encode('utf-8'))
 					if 'profile.php?id=' in str(i):
 						uid = re.findall(r'\?id=(.*?)&', str(i))
@@ -69,6 +43,6 @@ def main(self, cookie, url, config):
 			os.remove('dump/'+filename)
 	except: pass
 	print('\n\nOutput: '+output)
-	save = open(output, 'w')
-	save.write(json.dumps(id))
-	save.close()
+	save  =  open ( output , 'w' 
+	simpan . tulis ( json . dumps ( id ))
+	simpan . tutup ()
